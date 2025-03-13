@@ -383,7 +383,7 @@ describe('Central de atendimento ao cliente TAT', () => {
 
   })
 
-  it.only('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', () => {
+  it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', () => {
 
     cy.contains('a','Política de Privacidade')
     .should('have.attr', 'href', 'privacy.html')
@@ -391,9 +391,15 @@ describe('Central de atendimento ao cliente TAT', () => {
 
   })
 
+  it('acessa a página da política de privacidade removendo o target e então clicando no link', () => {
 
-  
-  
+    cy.contains('a','Política de Privacidade')
+      .invoke('removeAttr', 'target')
+      .click()
+
+      cy.get('#title').should('have.text', 'CAC TAT - Política de Privacidade')
+   
+  })
 
 
   
